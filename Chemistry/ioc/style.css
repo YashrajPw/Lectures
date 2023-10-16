@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    color: #007BFF; /* Blue text color */
+    color: #000000; /* Blue text color */
 }
 
 p {
@@ -52,14 +52,14 @@ button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF; /* Blue button background */
+    background-color: #000000; /* Blue button background */
     color: #fff; /* White text color */
     cursor: pointer;
     margin-bottom: 10px;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #00000080; /* Darker blue on hover */
 }
 
 /* Media queries for responsive design */
