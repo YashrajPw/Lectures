@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YashRajPW</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <img src="https://example.com/thumbnail.png" alt="Video Thumbnail" class="thumbnail">
+                <h1>Video Quality Selector</h1>
+                <p>Select the quality option:</p>
+                <!-- Quality selection dropdown for playback -->
+                <select id="playQualitySelector">
+                    <option value="240p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_240.m3u8">240p</option>
+                    <option value="360p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_360.m3u8">360p</option>
+                    <option value="480p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_480.m3u8">480p</option>
+                    <option value="720p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_720.m3u8">720p</option>
+                </select>
+                <!-- Button to play the selected quality in the browser -->
+                <button id="playButton">Play Video (Browser)</button>
+                <!-- Buttons for mobile users -->
+                <div id="mobileButtons" style="display: none;">
+                    <button id="vlcButton">Open in VLC Player</button>
+                    <button id="mxPlayerFreeButton">Open in MX Player (Free)</button>
+                    <button id="mxPlayerProButton">Open in MX Player (Pro)</button>
+                </div>
+                <!-- Quality selection dropdown for download -->
+                <select id="downloadQualitySelector">
+                    <option value="240p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_240.mp4">240p</option>
+                    <option value="360p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_360.mp4">360p</option>
+                    <option value="480p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_480.mp4">480p</option>
+                    <option value="720p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2002%20%20Electrostatics%20and%20Potential/2P4HALdyNZO0iyV8_720.mp4">720p</option>
+                </select>
+                <!-- Button to download the selected quality -->
+                <a id="downloadButton" href="#" download style="text-decoration: none;"><button>Download Video</button></a>
+                
+            </div>
+        </div>
+        <script src="a.js"></script>
+    </body>
+    </html>
+    
