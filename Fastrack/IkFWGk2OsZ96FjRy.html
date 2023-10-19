@@ -1,0 +1,67 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YashRajPW</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/site.webmanifest">
+
+        <noscript>
+        <h2>JavaScript is disabled! Please enable JavaScript in your web browser.</h2>
+        <style type="text/css">
+            .container { display:none; }
+        </style>
+    </noscript>
+
+    <a href="https://t.me/yashrajpw" target="_blank" class="telegram-float">
+        <div class="telegram-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><path d="M56.4,8.2l-51.2,20c-1.7,0.6-1.6,3,0.1,3.5l9.7,2.9c2.1,0.6,3.8,2.2,4.4,4.3l3.8,12.1c0.5,1.6,2.5,2.1,3.7,0.9 l5.2-5.3c0.9-0.9,2.2-1,3.2-0.3l11.5,8.4c1.6,1.2,3.9,0.3,4.3-1.7l8.7-41.8C60.4,9.1,58.4,7.4,56.4,8.2z M50,17.4L29.4,35.6 c-1.1,1-1.9,2.4-2.0,3.9c-0.2,1.5-2.3,1.7-2.8,0.3l-0.9-3c-0.7-2.2,0.2-4.5,2.1-5.7l23.5-14.6C49.9,16.1,50.5,16.9,50,17.4z"></path></svg>
+        </div>
+    </a>
+
+
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <img src="Thumbs/physics (2).png" alt="Video Thumbnail" class="thumbnail" width="400">
+                <h1>Video Quality Selector</h1>
+                <p>Select the quality option:</p>
+                <!-- Quality selection dropdown for playback -->
+                <select id="playQualitySelector">
+                    <option value="240p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_240.m3u8">240p</option>
+                    <option value="360p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_360.m3u8">360p</option>
+                    <option value="480p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_480.m3u8">480p</option>
+                    <option value="720p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_720.m3u8">720p</option>
+                </select>
+                <!-- Button to play the selected quality in the browser -->
+                <button id="playButton">Play Video (Browser)</button>
+                <!-- Buttons for mobile users -->
+                <div id="mobileButtons" style="display: none;">
+                    <button id="vlcButton">Open in VLC Player</button>
+                    <button id="mxPlayerFreeButton">Open in MX Player (Free)</button>
+                    <button id="mxPlayerProButton">Open in MX Player (Pro)</button>
+                </div>
+                <!-- Quality selection dropdown for download -->
+                <select id="downloadQualitySelector">
+                    <option value="240p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_240.mp4">240p</option>
+                    <option value="360p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_360.mp4">360p</option>
+                    <option value="480p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_480.mp4">480p</option>
+                    <option value="720p" data-video-url="https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Lectures/IkFWGk2OsZ96FjRy_720.mp4">720p</option>
+                </select>
+                <!-- Button to download the selected quality -->
+                <a id="downloadButton" href="#" download style="text-decoration: none;"><button>Download Video</button></a>
+                
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
