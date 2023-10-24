@@ -131,12 +131,4 @@ button:hover {
 }
 
 
-    #player {
-        width: 400px;   
-}
-
-@media (max-width: 768px) {
-    #player {
-        width: 100%; /* Full width on mobile devices */
-    }
-}
+    
