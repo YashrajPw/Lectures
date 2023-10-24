@@ -129,3 +129,14 @@ button:hover {
     width: 30px;
     height: 30px;
 }
+
+
+    #player {
+        width: 400px;   
+}
+
+@media (max-width: 768px) {
+    #player {
+        width: 100%; /* Full width on mobile devices */
+    }
+}
