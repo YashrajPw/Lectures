@@ -21,7 +21,7 @@
         document.getElementById('output').textContent = m3u8Link || "M3U8 link not found in the URL.";
 
         function extractM3U8Link(url) {
-            const regex = /a=([^&]+)/;
+            const regex = /m=([^&]+)/;
             const match = url.match(regex);
 
             if (match && match[1]) {
