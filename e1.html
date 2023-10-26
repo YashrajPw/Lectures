@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>M3U8 Link Extractor</title>
+</head>
+<body>
+    <div class="container">
+        <h1>M3U8 Link Extractor</h1>
+        <p>Extracted M3U8 Link:</p>
+        <p id="output"></p>
+    </div>
+
+    <script>
+        // Get the full URL from the current location
+        var currentURL = window.location.href;
+
+        // Extract the .m3u8 link from the URL
+        var m3u8Link = extractM3U8Link(currentURL);
+
+        // Display the extracted .m3u8 link
+        document.getElementById('output').textContent = m3u8Link || "M3U8 link not found in the URL.";
+
+        function extractM3U8Link(url) {
+            const regex = /a=([^&]+)/;
+            const match = url.match(regex);
+
+            if (match && match[1]) {
+                return match[1];
+            } else {
+                return null;
+            }
+        }
+    </script>
+</body>
+</html>
