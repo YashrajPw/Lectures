@@ -62,6 +62,8 @@ button:hover {
     background-color: #00000080; /* Darker blue on hover */
 }
 
+/* ... Your existing CSS ... */
+
 /* Media queries for responsive design */
 
 @media (max-width: 768px) {
@@ -75,6 +77,8 @@ button:hover {
     /* Styles for smaller screens (e.g., smartphones) */
     .container {
         padding: 10px;
+        max-width: 90%; /* Reduce max width to create gaps on left and right */
+        margin: 0 auto; /* Center the container */
     }
 
     h1 {
@@ -94,10 +98,15 @@ button:hover {
 
 @media (max-width: 320px) {
     /* Further adjustments for smaller screens (e.g., small smartphones) */
-    select, button {
-        font-size: 12px;
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
     }
 }
+
 
 
 .telegram-float {
@@ -135,44 +144,4 @@ button:hover {
     fill: #fff;
     width: 30px;
     height: 30px;
-}
-
-@media (max-width: 768px) {
-    /* Adjust styles for smaller screens (e.g., tablets) */
-    .container {
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Styles for smaller screens (e.g., smartphones) */
-    .container {
-        padding: 10px;
-        max-width: 100%; /* Ensure the container takes full width */
-    }
-
-    h1 {
-        font-size: 24px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    select, button {
-        font-size: 14px;
-    }
-}
-
-/* Additional mobile-specific styles */
-
-@media (max-width: 320px) {
-    /* Further adjustments for smaller screens (e.g., small smartphones) */
-    h1 {
-        font-size: 20px; /* Make text slightly smaller for very small screens */
-    }
-
-    p {
-        font-size: 14px; /* Make text smaller for very small screens */
-    }
 }
