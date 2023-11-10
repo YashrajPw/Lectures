@@ -1,35 +1,131 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+
 <head>
-    <title>M3U8 Link Extractor</title>
+  <meta charset="UTF-8">
+  
+  
+  <link rel='stylesheet' href='https://unpkg.com/aksvideoplayer@1.0.0/dist/aksVideoPlayer.min.css'>
+  
+<style>
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  background: #fff;
+  color: #111;
+  font-size: 0.8rem;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  font-family: Gilroy-Medium;
+}
+.github{
+    position: fixed;
+    margin: 0 auto;
+    left: -46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
+    height: 40px;
+    background: linear-gradient(#041d48, #01112d);
+    text-decoration: none;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    font-weight: 600;
+    cursor: pointer;
+    transform: rotate(90deg);
+    top: 30%;
+}
+.github svg{
+  margin-right:10px;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
 </head>
-<body>
-    <div class="container">
-        <h1>M3U8 Link Extractor</h1>
-        <p>Extracted M3U8 Link:</p>
-        <p id="output"></p>
-    </div>
 
-    <script>
-        // Get the full URL from the current location
-        var currentURL = window.location.href;
+<body translate="no">
+  <div id="video"></div>
 
-        // Extract the .m3u8 link from the URL
-        var m3u8Link = extractM3U8Link(currentURL);
+<!-- Video By: Refik Anadol -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://imasdk.googleapis.com/js/sdkloader/ima3.js'></script>
+<script src='https://unpkg.com/aksvideoplayer@1.0.0/dist/aksVideoPlayer.min.js'></script>
+      <script id="rendered-js" >
+$("#video").aksVideoPlayer({
+  file: [
+  {
+    file: "https://fastrack.yashrajpw.workers.dev/0:/Physics/CH%20-%2001%20%20Electric%20Charges%20and%20field/Videos/ViveVmNA4JE9gVmK_720.m3u8",
+    label: "1080p" },
 
-        // Display the extracted .m3u8 link
-        document.getElementById('output').textContent = m3u8Link || "M3U8 link not found in the URL.";
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/video-720.mp4",
+    label: "720p" },
 
-        function extractM3U8Link(url) {
-            const regex = /a=([^&]+)/;
-            const match = url.match(regex);
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/video-540.mp4",
+    label: "540p" },
 
-            if (match && match[1]) {
-                return match[1];
-            } else {
-                return null;
-            }
-        }
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/video-360.mp4",
+    label: "360p" },
+
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/video-240.mp4",
+    label: "240p" }],
+
+
+  width: 640,
+  height: 360,
+  poster: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/poster.webp",
+  forward: true,
+  captions: [
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/subtitle.en.vtt",
+    label: "English",
+    kind: "captions",
+    srclang: "en" },
+
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/vvideos/subtitle.fr.vtt",
+    label: "Français",
+    kind: "captions",
+    srclang: "fr" },
+
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/subtitle.tr.vtt",
+    label: "Türkçe",
+    kind: "captions",
+    srclang: "tr" },
+
+  {
+    file: "https://raw.githubusercontent.com/Ahmetaksungur/aksvideoplayer/main/videos/subtitle.de.vtt",
+    label: "Deutsche",
+    kind: "captions",
+    srclang: "de" }] });
+//# sourceURL=pen.js
     </script>
+
+  
 </body>
+
 </html>
