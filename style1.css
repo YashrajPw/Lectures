@@ -220,3 +220,8 @@ padding: 5px 10px;
 background-color: #ccc;
 border-radius: 5px;
 }
+
+/* Custom CSS to hide volume control */
+.plyr__controls .plyr__volume {
+    display: none;
+  }
