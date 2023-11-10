@@ -81,7 +81,7 @@
             <button id="openVLC">Open with VLC</button>
             <button id="openMXPlayerFree">Open with MX Player Free</button>
             <button id="openMXPlayerPro">Open with MX Player Pro</button>
-            
+           
             <div>
     
                 <a href="#" id="popupLink" style="text-decoration: none;"> <b style="color: red;">How to View Lecture Tutorial</b> </a>
@@ -308,6 +308,61 @@ document.getElementById('open1DM').addEventListener('click', function() {
     // Call the function to toggle the visibility when the page loads
     window.onload = toggleMobileButtons;
 </script>
+<!-- Add this script after your existing scripts -->
+<!-- Add this script after your existing scripts -->
+<!-- Add this script after your existing scripts -->
+<script>
+    // Function to shorten the URL using the specified API
+    async function shortenUrl(longUrl) {
+        const apiUrl = 'https://urlshortx.com/api';
+        const apiToken = '69ffa12f7cbbb8e97f6ee76628cce449e00231c8';
+
+        try {
+            // Shorten the URL
+            const response = await fetch(`${apiUrl}?api=${apiToken}&url=${encodeURIComponent(longUrl)}`);
+            const data = await response.json();
+            if (data.status === 'success') {
+                return data.shortenedUrl;
+            } else {
+                throw new Error(data.message || 'Error shortening URL');
+            }
+        } catch (error) {
+            console.error('Error shortening URL:', error);
+            throw error; // Propagate the error
+        }
+    }
+
+    // Function to update the download link with the shortened URL
+    async function updateDownloadLink(event) {
+        // Prevent the default behavior of the download button
+        event.preventDefault();
+
+        const selectedDownloadOption = downloadQualitySelector.options[downloadQualitySelector.selectedIndex];
+        const videoUrl = selectedDownloadOption.getAttribute('data-video-url');
+
+        try {
+            // Shorten the URL
+            const shortUrl = await shortenUrl(videoUrl);
+
+            // Open the shortened URL
+            window.open(shortUrl, '_blank');
+
+            // Provide user feedback (you can customize this part)
+            alert('Opening the shortened URL in a new tab!');
+        } catch (error) {
+            // Handle the error or provide user feedback
+            alert('Error opening shortened URL. Please try again.');
+        }
+    }
+
+    // Event listener for the download button click
+    downloadButton.addEventListener('click', updateDownloadLink);
+</script>
+
+
+
+
+
 
 </body>
 </html>
