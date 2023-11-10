@@ -54,9 +54,10 @@
             </select>
 
             <!-- Button to play the selected quality in the browser -->
-            <button id="playButton">Play Video (Browser)</button>
+            <button id="copyButton">Copy Link</button>
+            <button id="playButton">Play Video File </button>
             <button id="open1DM">Download with 1DM</button>
-
+            
             <!-- Buttons to open video with different players -->
             <button id="openVLC">Open with VLC</button>
             <button id="openMXPlayerFree">Open with MX Player Free</button>
@@ -148,7 +149,25 @@ document.getElementById('open1DM').addEventListener('click', function() {
         window.open(intentUrl);
     });
 
-    
+    // Function to copy the updated m3u8 link to the clipboard
+    function copyM3U8Link() {
+        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+
+        // Create a temporary input element to copy the text to clipboard
+        const tempInput = document.createElement('input');
+        tempInput.value = videoUrl;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        // Provide user feedback (you can customize this part)
+        alert('Link copied to clipboard!');
+    }
+
+    // Add event listener for the copy button
+    document.getElementById('copyButton').addEventListener('click', copyM3U8Link);
         function updateQualityDropdowns(m3u8Link) {
             const qualityOptions = ["240", "360", "480", "720"];
             const selectElement = document.getElementById('playQualitySelector');
@@ -210,5 +229,30 @@ document.getElementById('open1DM').addEventListener('click', function() {
             alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
         }
     </script>
+    <!-- Add this script after your existing script -->
+<script>
+    // Function to check if the user is on a mobile device
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Function to toggle the visibility of mobile-specific buttons
+    function toggleMobileButtons() {
+        const mobileButtons = ['openVLC', 'openMXPlayerFree', 'openMXPlayerPro', 'open1DM'];
+        const displayValue = isMobileDevice() ? 'block' : 'none';
+
+        // Toggle the display of each mobile-specific button
+        mobileButtons.forEach(buttonId => {
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.style.display = displayValue;
+            }
+        });
+    }
+
+    // Call the function to toggle the visibility when the page loads
+    window.onload = toggleMobileButtons;
+</script>
+
 </body>
 </html>
