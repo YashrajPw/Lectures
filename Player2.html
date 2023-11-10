@@ -32,7 +32,23 @@
 <body>
     <div class="container">
         <div class="content">
-           
+            <div class="hide">
+            <video id="player" style="--plyr-color-main: #000000; width: 640px;"> <!-- Change the width to your preferred size -->
+                <!-- Set the poster attribute to the thumbnail link -->
+                <source src="" type="video/mp4" />
+            </video>
+            
+
+            <h2>🎥Video Quality Selector</h2>
+            
+            <!-- Quality selection dropdown for MP4 playback -->
+            <select id="mp4QualitySelector">
+                <!-- Options will be dynamically added here -->
+            </select>
+            
+            <!-- Button to play the selected MP4 quality in the Plyr.io player -->
+            <button id="playMP4Button">Play Here</button>
+        </div>
                <h2>Play Externally (🚀Fast)</h2>
             <!-- Quality selection dropdown for playback -->
             <select id="playQualitySelector">
@@ -40,15 +56,27 @@
             </select>
 
             <!-- Button to play the selected quality in the browser -->
-            <button id="copyButton">Copy Link to Download</button>
-            <button id="playButton">Download Video File to Play </button>
+            <button id="copyButton">Copy Link</button>
+            <button id="playButton">Play Video File </button>
             <button id="open1DM">Download with 1DM</button>
             
             <!-- Buttons to open video with different players -->
             <button id="openVLC">Open with VLC</button>
             <button id="openMXPlayerFree">Open with MX Player Free</button>
             <button id="openMXPlayerPro">Open with MX Player Pro</button>
-            <a href="https://www.youtube.com" style="text-decoration: none; color: red;" ><b>How to Download???</b></a>
+
+            <div class="hide">
+            <h2>Download Lectures⚡️</h2>
+
+            <!-- Quality selection dropdown for download -->
+            <select id="downloadQualitySelector">
+                <!-- Options will be dynamically added here -->
+            </select>
+
+            <!-- Button to download the selected quality -->
+            <a id="downloadButton" href="#" download style="text-decoration: none;"><button>Download Video</button></a>
+        </div>
+            
 
             
         </div>

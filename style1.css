@@ -145,3 +145,7 @@ button:hover {
     width: 30px;
     height: 30px;
 }
+
+.hide{
+    display: none;
+}
