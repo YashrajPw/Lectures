@@ -175,6 +175,59 @@
 </script>
 
 <!-- ... Your existing scripts ... -->
+<!-- ... Your existing HTML code ... -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to open the additional popup
+        function openNotesPopup() {
+            document.getElementById('notesPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Function to close the additional popup
+        function closeNotesPopup() {
+            document.getElementById('notesPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        // Function to check if a parameter is present in the URL
+        function isParameterPresent(parameterName) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.has(parameterName) && urlParams.get(parameterName);
+        }
+
+        // Function to hide buttons based on URL parameters
+        function hideButtonsBasedOnParameters() {
+            const buttonsToCheck = ['d', 'dvs', 'dsn', 'ed'];
+
+            buttonsToCheck.forEach(parameter => {
+                const button = document.getElementById(`${parameter}Link`);
+                if (button && !isParameterPresent(parameter)) {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        // Call the function to hide buttons based on URL parameters
+        hideButtonsBasedOnParameters();
+
+        // Attach the openNotesPopup function to the notes button click event
+        document.getElementById('notesButton').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            openNotesPopup();
+        });
+
+        // Attach the closeNotesPopup function to the close button click event
+        document.getElementById('closeNotesPopupBtn').addEventListener('click', closeNotesPopup);
+
+        // Attach the closeNotesPopup function to the overlay click event
+        document.getElementById('overlay').addEventListener('click', closeNotesPopup);
+    });
+</script>
+
+
+<!-- ... Your existing scripts ... -->
 
 
 <!-- ... Your existing scripts ... -->
