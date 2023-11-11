@@ -35,10 +35,90 @@
         </script>
         <script src='//urlshortx.com/js/full-page-script.js'></script>
         <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-</head>
+
+        <script>
+            function openPopup(message) {
+                alert(message);
+                // You can customize the pop-up message or behavior here
+            }
+    
+            // Intercept clicks on specific links
+            document.addEventListener("click", function (event) {
+                if (event.target.tagName === 'A') {
+                    const href = event.target.getAttribute("href");
+                    let message = "";
+                    if (href === "/dpp") {
+                        message = "No DPP";
+                    } else if (href === "/wds") {
+                        message = "No DPP Videos";
+                    } else if (href === "/nds") {
+                        message = "No DPP solution notes";
+                    }
+    
+                    if (message) {
+                        event.preventDefault(); // Prevent the default link behavior
+                        openPopup(message); // Call the function to show the pop-up
+                    }
+                }
+            });
+        </script>
+
+    </head>
 <body>
     <div class="container">
         <div class="content">
+            <a href="#" class="button" id="notesButton" style="text-decoration: none;">Attachments</a>
+
+
+<!-- Add this script after your existing scripts -->
+<script>
+    // Function to open the additional popup
+    function openNotesPopup() {
+        document.getElementById('notesPopup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    // Function to close the additional popup
+    function closeNotesPopup() {
+        document.getElementById('notesPopup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Attach the openNotesPopup function to the notes button click event
+        document.getElementById('notesButton').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            openNotesPopup();
+        });
+
+        // Attach the closeNotesPopup function to the close button click event
+        document.getElementById('closeNotesPopupBtn').addEventListener('click', closeNotesPopup);
+
+        // Attach the closeNotesPopup function to the overlay click event
+        document.getElementById('overlay').addEventListener('click', closeNotesPopup);
+    });
+</script>
+
+<!-- Add this code after your existing content -->
+<div class="popup-container" id="notesPopup">
+    <div class="close-btn-container" onclick="closeNotesPopup()">
+        <span class="close-btn">X</span>
+    </div>
+    <h2 style="text-align: center;">Attachments</h2>
+
+    <!-- Add buttons for notes, DPP, DPP video solutions, and DPP solution notes -->
+    <div>
+        <a class="button" href="#" id="notesLink" style="text-decoration: none;">Notes</a>
+        <a class="button" href="#" id="dppLink" style="text-decoration: none;">DPP</a><br>
+        <a class="button" href="#" id="dppVideoSolutionsLink" style="text-decoration: none;">DPP Video Solutions</a><br>
+        <a class="button" href="#" id="dppSolutionNotesLink" style="text-decoration: none;">DPP Solution Notes</a>
+        <!-- Add this code after your existing content --><br>
+    <a class="button" href="#" id="extraDppLink" style="text-decoration: none;">Extra DPP</a>
+    </div>
+</div>
+
+
+
             <video id="player" style=" width: 640px;"> <!-- Change the width to your preferred size -->
                 <!-- Set the poster attribute to the thumbnail link -->
                 <source src="" type="video/mp4" />
@@ -319,8 +399,7 @@ document.getElementById('open1DM').addEventListener('click', function() {
     window.onload = toggleMobileButtons;
 </script>
 <!-- Add this script after your existing scripts -->
-<!-- Add this script after your existing scripts -->
-<!-- Add this script after your existing scripts -->
+
 <script>
     // Function to shorten the URL using the specified API
     async function shortenUrl(longUrl) {
@@ -358,7 +437,7 @@ document.getElementById('open1DM').addEventListener('click', function() {
             window.open(shortUrl, '_blank');
 
             // Provide user feedback (you can customize this part)
-            alert('Opening the shortened URL in a new tab!');
+            ;
         } catch (error) {
             // Handle the error or provide user feedback
             alert('Error opening shortened URL. Please try again.');
@@ -368,6 +447,121 @@ document.getElementById('open1DM').addEventListener('click', function() {
     // Event listener for the download button click
     downloadButton.addEventListener('click', updateDownloadLink);
 </script>
+
+
+
+
+<script>
+    // Function to open the corresponding URL in a new tab
+    function openUrlInNewTab(url) {
+        window.open(url, '_blank');
+    }
+
+    // Event listener for the "Notes" button
+    document.getElementById('notesLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        openUrlInNewTab(getParameterByName('n'));
+    });
+
+    // Event listener for the "DPP" button
+    document.getElementById('dppLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        openUrlInNewTab(getParameterByName('d'));
+    });
+
+    // Event listener for the "DPP Video Solutions" button
+    document.getElementById('dppVideoSolutionsLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        openUrlInNewTab(getParameterByName('dvs'));
+    });
+
+    // Event listener for the "DPP Solution Notes" button
+    document.getElementById('dppSolutionNotesLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        openUrlInNewTab(getParameterByName('dsn'));
+    });
+
+    // Event listener for the "Extra DPP" button
+    document.getElementById('extraDppLink').addEventListener('click', function (event) {
+        event.preventDefault();
+        openUrlInNewTab(getParameterByName('ed'));
+    });
+
+    // Function to get the value of a parameter from the URL
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+</script>
+<!-- Add this script after your existing scripts -->
+
+<!-- Add this script after your existing scripts -->
+<!-- Add this script after your existing scripts -->
+<script>
+    // Function to shorten the URL using the specified API
+    async function shortenUrl(longUrl) {
+        const apiUrl = 'https://urlshortx.com/api';
+        const apiToken = '69ffa12f7cbbb8e97f6ee76628cce449e00231c8';
+
+        // Exclude certain paths from shortening
+        const excludedPaths = ['/dpp', '/wds', '/w', '/nds', '/n'];
+
+        // Check if the URL contains any excluded paths
+        const isExcluded = excludedPaths.some(path => longUrl.includes(path));
+
+        if (isExcluded) {
+            return longUrl; // Return the original URL without shortening
+        }
+
+        try {
+            // Shorten the URL
+            const response = await fetch(`${apiUrl}?api=${apiToken}&url=${encodeURIComponent(longUrl)}`);
+            const data = await response.json();
+            if (data.status === 'success') {
+                return data.shortenedUrl;
+            } else {
+                throw new Error(data.message || 'Error shortening URL');
+            }
+        } catch (error) {
+            console.error('Error shortening URL:', error);
+            throw error; // Propagate the error
+        }
+    }
+
+    // Function to update the button with the shortened URL
+    async function updateButtonWithShortenedUrl(buttonId, parameterName) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            const originalUrl = getParameterByName(parameterName);
+            if (originalUrl) {
+                try {
+                    const shortenedUrl = await shortenUrl(originalUrl);
+                    button.href = shortenedUrl;
+                } catch (error) {
+                    console.error(`Error updating ${buttonId} with shortened URL:`, error);
+                    alert(`Error updating ${buttonId} with shortened URL. Please try again.`);
+                }
+            }
+        }
+    }
+
+    // Event listeners to update the buttons with shortened URLs
+    document.addEventListener("DOMContentLoaded", function () {
+        updateButtonWithShortenedUrl('notesLink', 'n');
+        updateButtonWithShortenedUrl('dppLink', 'd');
+        updateButtonWithShortenedUrl('dppVideoSolutionsLink', 'dvs');
+        updateButtonWithShortenedUrl('dppSolutionNotesLink', 'dsn');
+        updateButtonWithShortenedUrl('extraDppLink', 'ed');
+    });
+
+    // Function to get the value of a parameter from the URL
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+</script>
+
+
 
 </body>
 </html>
