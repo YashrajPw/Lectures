@@ -497,6 +497,7 @@ document.getElementById('open1DM').addEventListener('click', function() {
 
 <!-- Add this script after your existing scripts -->
 <!-- Add this script after your existing scripts -->
+<!-- Add this script after your existing scripts -->
 <script>
     // Function to shorten the URL using the specified API
     async function shortenUrl(longUrl) {
@@ -545,13 +546,15 @@ document.getElementById('open1DM').addEventListener('click', function() {
         }
     }
 
-    // Event listeners to update the buttons with shortened URLs
-    document.addEventListener("DOMContentLoaded", function () {
-        updateButtonWithShortenedUrl('notesLink', 'n');
-        updateButtonWithShortenedUrl('dppLink', 'd');
-        updateButtonWithShortenedUrl('dppVideoSolutionsLink', 'dvs');
-        updateButtonWithShortenedUrl('dppSolutionNotesLink', 'dsn');
-        updateButtonWithShortenedUrl('extraDppLink', 'ed');
+    // Event listener to update the buttons with shortened URLs
+    document.addEventListener("DOMContentLoaded", async function () {
+        await Promise.all([
+            updateButtonWithShortenedUrl('notesLink', 'n'),
+            updateButtonWithShortenedUrl('dppLink', 'd'),
+            updateButtonWithShortenedUrl('dppVideoSolutionsLink', 'dvs'),
+            updateButtonWithShortenedUrl('dppSolutionNotesLink', 'dsn'),
+            updateButtonWithShortenedUrl('extraDppLink', 'ed')
+        ]);
     });
 
     // Function to get the value of a parameter from the URL
@@ -560,6 +563,7 @@ document.getElementById('open1DM').addEventListener('click', function() {
         return urlParams.get(name);
     }
 </script>
+
 
 
 
