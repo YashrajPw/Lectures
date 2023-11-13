@@ -348,19 +348,28 @@ player.elements.container.style.width = '400px'; // Change the width to your pre
             window.open('vlc://' + videoUrl);
         });
     
-        // Event listener for the "Open with MX Player Free" button
-        document.getElementById('openMXPlayerFree').addEventListener('click', function() {
-            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-            const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-            window.open('mxplayerfree://' + videoUrl);
-        });
-    
-        // Event listener for the "Open with MX Player Pro" button
-        document.getElementById('openMXPlayerPro').addEventListener('click', function() {
-            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-            const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-            window.open('mxplayerpro://' + videoUrl);
-        });
+       // Function to open the video in MX Player Free
+    function openInMXPlayerFree() {
+        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+        const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.ad;end;';
+        window.open(intentUrl);
+    }
+
+    // Event listener for the "Open with MX Player Free" button
+    document.getElementById('openMXPlayerFree').addEventListener('click', openInMXPlayerFree);
+
+    // Function to open the video in MX Player Pro
+    function openInMXPlayerPro() {
+        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+        const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.pro;end;';
+        window.open(intentUrl);
+    }
+
+    // Event listener for the "Open with MX Player Pro" button
+    document.getElementById('openMXPlayerPro').addEventListener('click', openInMXPlayerPro);
+
 
 
 // Event listener for the "Open with 1DM" button
@@ -521,7 +530,16 @@ document.getElementById('open1DM').addEventListener('click', function() {
     // Event listener for the download button click
     downloadButton.addEventListener('click', updateDownloadLink);
     </script>
+<script>
+    document.body.addEventListener('dragstart', event => {
+  event.preventDefault();
+});
 
+document.body.addEventListener('drop', event => {
+  event.preventDefault();
+});
+
+</script>
 
 </body>
 </html>

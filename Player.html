@@ -368,6 +368,15 @@ document.getElementById('open1DM').addEventListener('click', function() {
     // Event listener for the download button click
     downloadButton.addEventListener('click', updateDownloadLink);
 </script>
+<script>
+    document.body.addEventListener('dragstart', event => {
+  event.preventDefault();
+});
 
+document.body.addEventListener('drop', event => {
+  event.preventDefault();
+});
+
+</script>
 </body>
 </html>
