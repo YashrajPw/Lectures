@@ -350,37 +350,29 @@ player.elements.container.style.width = '400px'; // Change the width to your pre
     
        // Function to open the video in MX Player Free
 function openInMXPlayerFree() {
-    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-    const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.ad;end;';
-
-    console.log('MX Player Free Intent URL:', intentUrl);
-
-    // Attempt to open the intent URL
-    window.location.href = intentUrl;
-
-    // Fallback message
-    alert('If the video did not open in MX Player Free, please open the link in the app manually.');
+    openInMXPlayer('com.mxtech.videoplayer.ad');
 }
 
 document.getElementById('openMXPlayerFree').addEventListener('click', openInMXPlayerFree);
 
 // Function to open the video in MX Player Pro
 function openInMXPlayerPro() {
-    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-    const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.pro;end;';
-
-    console.log('MX Player Pro Intent URL:', intentUrl);
-
-    // Attempt to open the intent URL
-    window.location.href = intentUrl;
-
-    // Fallback message
-    alert('If the video did not open in MX Player Pro, please open the link in the app manually.');
+    openInMXPlayer('com.mxtech.videoplayer.pro');
 }
 
 document.getElementById('openMXPlayerPro').addEventListener('click', openInMXPlayerPro);
+
+// General function to open MX Player with a specific package name
+function openInMXPlayer(packageName) {
+    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+
+    // Create an intent URL for MX Player
+    const intentUrl = `intent:${videoUrl}#Intent;package=${packageName};end`;
+
+    // Open the intent URL
+    window.open(intentUrl, '_blank');
+}
 
 // Repeat similar modifications for other players (VLC, 1DM)...
 
