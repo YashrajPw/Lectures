@@ -349,25 +349,40 @@ player.elements.container.style.width = '400px'; // Change the width to your pre
         });
     
        // Function to open the video in MX Player Free
-    function openInMXPlayerFree() {
-        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-        const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.ad;end;';
-        window.open(intentUrl);
-    }
+function openInMXPlayerFree() {
+    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+    const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.ad;end;';
 
-    
+    console.log('MX Player Free Intent URL:', intentUrl);
 
-    // Function to open the video in MX Player Pro
-    function openInMXPlayerPro() {
-        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
-        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
-        const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.pro;end;';
-        window.open(intentUrl);
-    }
+    // Attempt to open the intent URL
+    window.location.href = intentUrl;
 
-    
+    // Fallback message
+    alert('If the video did not open in MX Player Free, please open the link in the app manually.');
+}
 
+document.getElementById('openMXPlayerFree').addEventListener('click', openInMXPlayerFree);
+
+// Function to open the video in MX Player Pro
+function openInMXPlayerPro() {
+    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+    const intentUrl = 'intent://' + videoUrl + '#Intent;package=com.mxtech.videoplayer.pro;end;';
+
+    console.log('MX Player Pro Intent URL:', intentUrl);
+
+    // Attempt to open the intent URL
+    window.location.href = intentUrl;
+
+    // Fallback message
+    alert('If the video did not open in MX Player Pro, please open the link in the app manually.');
+}
+
+document.getElementById('openMXPlayerPro').addEventListener('click', openInMXPlayerPro);
+
+// Repeat similar modifications for other players (VLC, 1DM)...
 
 
 // Event listener for the "Open with 1DM" button
