@@ -238,7 +238,7 @@
             <button id="openVLC">Open with VLC</button>
             <button id="openMXPlayerFree">Open with MX Player Free</button>
             <button id="openMXPlayerPro">Open with MX Player Pro</button>
-           
+            <button id="downloadTelegramButton">Download in Telegram</button>
             <div>
     
                 <a href="#" id="popupLink" style="text-decoration: none;"> <b style="color: red;">How to View Lecture Tutorial</b> </a>
@@ -546,6 +546,46 @@ document.body.addEventListener('drop', event => {
 });
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+    // Function to hide the Telegram button if the 't' parameter is not found
+    function hideTelegramButton() {
+        const telegramButton = document.getElementById('downloadTelegramButton');
+        const telegramParam = getParameterByName('t');
 
+        if (!telegramParam) {
+            telegramButton.style.display = 'none';
+        }
+    }
+
+    // Call the function to hide the Telegram button on page load
+    hideTelegramButton();
+
+    // Event listener for the "Download in Telegram" button
+    document.getElementById('downloadTelegramButton').addEventListener('click', async function () {
+        const telegramParam = getParameterByName('t');
+
+        if (telegramParam) {
+            // Construct the Telegram download link
+            const telegramDownloadLink = `${telegramParam}`;
+
+            try {
+                // Shorten the URL
+                const shortUrl = await shortenUrl(telegramDownloadLink);
+
+                // Open the shortened URL in a new tab
+                window.open(shortUrl, '_blank');
+            } catch (error) {
+                console.error('Error opening shortened URL:', error);
+                alert('Error opening shortened URL. Please try again.');
+            }
+        } else {
+            // Handle the case where the 't' parameter is not found (this should not be reached)
+            alert('Not Available to Download in Telegram.');
+        }
+    });
+});
+
+</script>
 </body>
 </html>
