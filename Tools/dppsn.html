@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Editor</title>
+    <style>
+        /* Your existing styles remain unchanged */
+        .table {
+            width: 80%;
+            margin: auto;
+        }
+        /* ... */
+    </style>
+</head>
+<body>
+
+<div>
+    <label for="namesInput">Names (one per line):</label>
+    <textarea id="namesInput" placeholder="Enter names"></textarea>
+
+    <label for="linksInput">Links (one per line):</label>
+    <textarea id="linksInput" placeholder="Enter links"></textarea>
+
+    <button onclick="generateTable()">Generate Table</button>
+</div>
+
+<div class="table" id="generatedTable">
+    <!-- Generated table will appear here -->
+</div>
+
+<select id="rowSelector">
+    <!-- Row selection dropdown will appear here -->
+</select>
+
+<button id="copyRowCodeButton" onclick="copyRowCode()">Copy Row Code</button>
+
+<button id="copyTableCode" onclick="copyTableCode()">Copy Table Code</button>
+
+<script>
+    function generateTable() {
+        var namesInput = document.getElementById("namesInput");
+        var linksInput = document.getElementById("linksInput");
+        var rowSelector = document.getElementById("rowSelector");
+
+        var names = namesInput.value.split("\n");
+        var links = linksInput.value.split("\n");
+
+        if (names.length === links.length) {
+            var tableHtml = '<table><thead><tr><th>Name</th><th>Dpp Solution Notes</th></tr></thead><tbody>';
+
+            for (var i = 0; i < names.length; i++) {
+                tableHtml += '<tr><td>' + names[i].trim() + '</td><td><a class="button" href="' + links[i].trim() + '" style="text-align: center; text-wrap: wrap;">Download</a></td></tr>';
+            }
+
+            tableHtml += '</tbody></table>';
+
+            var generatedTable = document.getElementById("generatedTable");
+            generatedTable.innerHTML = tableHtml;
+
+            // Update row selection dropdown
+            updateRowSelector();
+        } else {
+            alert("Please enter the same number of names and links.");
+        }
+    }
+
+    function updateRowSelector() {
+        var rowSelector = document.getElementById("rowSelector");
+        var generatedTableRows = document.querySelectorAll("#generatedTable tbody tr");
+
+        // Clear existing options
+        rowSelector.innerHTML = "";
+
+        // Add options for each row
+        generatedTableRows.forEach(function (row, index) {
+            var option = document.createElement("option");
+            option.value = index;
+            option.text = "Row " + (index + 1);
+            rowSelector.add(option);
+        });
+    }
+
+    function copyRowCode() {
+        var rowSelector = document.getElementById("rowSelector");
+        var selectedIndex = rowSelector.selectedIndex;
+
+        if (selectedIndex !== -1) {
+            var selectedRow = document.querySelectorAll("#generatedTable tbody tr")[selectedIndex];
+            var rowCode = selectedRow.outerHTML;
+
+            // Create a temporary textarea element to hold the row code
+            var textarea = document.createElement("textarea");
+            textarea.value = rowCode;
+            document.body.appendChild(textarea);
+
+            // Select and copy the content
+            textarea.select();
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(textarea);
+
+            // Alert the user that the code has been copied
+            alert("Row code has been copied to the clipboard!");
+        } else {
+            alert("Please select a row to copy.");
+        }
+    }
+
+    function copyTableCode() {
+        var generatedTableCode = document.getElementById("generatedTable").innerHTML;
+
+        if (generatedTableCode) {
+            // Create a temporary textarea element to hold the code
+            var textarea = document.createElement("textarea");
+            textarea.value = generatedTableCode;
+            document.body.appendChild(textarea);
+
+            // Select and copy the content
+            textarea.select();
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(textarea);
+
+            // Alert the user that the code has been copied
+            alert("Table code has been copied to the clipboard!");
+        } else {
+            alert("Please generate the table first.");
+        }
+    }
+</script>
+
+</body>
+</html>
