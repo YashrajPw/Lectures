@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Editor</title>
+    <title>Dpp Lec</title>
     <style>
         /* Your existing styles remain unchanged */
         .table {
@@ -48,7 +48,7 @@
         var links = linksInput.value.split("\n");
 
         if (names.length === links.length) {
-            var tableHtml = '<table><thead><tr><th>Name</th><th>Dpp Videos</th></tr></thead><tbody>';
+            var tableHtml = '<table id="table4" class="hidden"><thead><tr><th>Name</th><th>Dpp Videos</th></tr></thead><tbody>';
 
             for (var i = 0; i < names.length; i++) {
                 tableHtml += '<tr><td>' + names[i].trim() + '</td><td><a class="button" href="' + links[i].trim() + '" style="text-align: center; text-wrap: wrap;">Watch HD</a></td></tr>';
