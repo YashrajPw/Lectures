@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YashRajPW</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-16x16.png">
+    <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/site.webmanifest">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <noscript>
+        <h2>JavaScript is disabled! Please enable JavaScript in your web browser.</h2>
+        <style type="text/css">
+            .container {
+                display: none;
+            }
+        </style>
+    </noscript>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <a href="#" class="button" id="notesButton" style="text-decoration: none;">Attachments</a>
+
+            <div>
+                <script>
+                    // Function to open the additional popup
+                    function openNotesPopup() {
+                        document.getElementById('notesPopup').style.display = 'block';
+                        document.getElementById('overlay').style.display = 'block';
+                    }
+
+                    // Function to close the additional popup
+                    function closeNotesPopup() {
+                        document.getElementById('notesPopup').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        // Attach the openNotesPopup function to the notes button click event
+                        document.getElementById('notesButton').addEventListener('click', function (event) {
+                            event.preventDefault(); // Prevent the default link behavior
+                            openNotesPopup();
+                        });
+
+                        // Attach the closeNotesPopup function to the close button click event
+                        document.getElementById('closeNotesPopupBtn').addEventListener('click', closeNotesPopup);
+
+                        // Attach the closeNotesPopup function to the overlay click event
+                        document.getElementById('overlay').addEventListener('click', closeNotesPopup);
+                    });
+                </script>
+
+                <!-- Add this code after your existing content -->
+                <div class="popup-container" id="notesPopup">
+                    <div class="close-btn-container" onclick="closeNotesPopup()">
+                        <span class="close-btn">X</span>
+                    </div>
+                    <h2 style="text-align: center;">Attachments</h2>
+
+                    <!-- Add buttons for notes, DPP, DPP video solutions, and DPP solution notes -->
+                    <div>
+                        <a class="button" href="#" id="notesLink" style="text-decoration: none;">Notes</a>
+                        <a class="button" href="#" id="dppLink" style="text-decoration: none;">DPP</a><br>
+                        <a class="button" href="#" id="dppVideoSolutionsLink" style="text-decoration: none;">DPP Video Solutions</a><br>
+                        <a class="button" href="#" id="dppSolutionNotesLink" style="text-decoration: none;">DPP Solution Notes</a>
+                        <!-- Add this code after your existing content --><br>
+                        <a class="button" href="#" id="extraDppLink" style="text-decoration: none;">Extra DPP</a>
+                    </div>
+                </div>
+
+                <script>
+                    // Function to open the additional popup
+                    function openNotesPopup() {
+                        document.getElementById('notesPopup').style.display = 'block';
+                        document.getElementById('overlay').style.display = 'block';
+                    }
+
+                    // Function to close the additional popup
+                    function closeNotesPopup() {
+                        document.getElementById('notesPopup').style.display = 'none';
+                        document.getElementById('overlay').style.display = 'none';
+                    }
+
+                    // Event listeners to open the shortened URLs in new tabs
+                    document.addEventListener("DOMContentLoaded", async function () {
+                        try {
+                            await Promise.all([
+                                openShortenedUrlInNewTab('notesLink', 'n', 'No DPP'),
+                                openShortenedUrlInNewTab('dppLink', 'd', 'No DPP'),
+                                openShortenedUrlInNewTab('dppVideoSolutionsLink', 'dvs', 'No DPP Video Solution'),
+                                openShortenedUrlInNewTab('dppSolutionNotesLink', 'dsn', 'No DPP Solution Notes'),
+                                openShortenedUrlInNewTab('extraDppLink', 'ed', 'No Extra DPP')
+                            ]);
+                        } catch (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                    // Function to get the value of a parameter from the URL
+                    function getParameterByName(name) {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        return urlParams.get(name);
+                    }
+                </script>
+
+                <script>
+                    const player = new Plyr('#player', {
+                        ratio: '16:9', // Set the aspect ratio you prefer (e.g., '16:9' for widescreen)
+                    });
+                    // Set the player's width using JavaScript
+                    player.elements.container.style.width = '400px'; // Change the width to your preferred size
+                    // Function to update Plyr.io player source
+                    function updatePlyrSource() {
+                        const selectedMP4Option = mp4QualitySelector.options[mp4QualitySelector.selectedIndex];
+                        const mp4VideoUrl = selectedMP4Option.getAttribute('data-video-url');
+                        player.source = {
+                            type: 'video',
+                            sources: [{
+                                src: mp4VideoUrl,
+                                type: 'video/mp4',
+                            }, ],
+                        };
+                    }
+
+                    // Event listener for the "Play Video (Browser)" button
+                    document.getElementById('playButton').addEventListener('click', function () {
+                        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+                        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+                        window.open(videoUrl, '_blank');
+                    });
+
+                    // Event listener for the "Download Video" button
+                    document.getElementById('downloadButton').addEventListener('click', function () {
+                        const selectedDownloadOption = downloadQualitySelector.options[downloadQualitySelector.selectedIndex];
+                        const videoUrl = selectedDownloadOption.getAttribute('data-video-url');
+                        downloadButton.href = videoUrl;
+                    });
+
+                    // Event listener for the "Play MP4 Video (Plyr.io)" button
+                    document.getElementById('playMP4Button').addEventListener('click', function () {
+                        updatePlyrSource();
+                        player.play();
+                    });
+
+                    // Function to open the shortened URL in a new tab
+                    async function openShortenedUrlInNewTab(buttonId, paramName, defaultValue) {
+                        const button = document.getElementById(buttonId);
+                        const url = button.getAttribute('href');
+                        const paramValue = getParameterByName(paramName) || defaultValue;
+                        const finalUrl = url + paramValue;
+                        button.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            window.open(finalUrl, '_blank');
+                        });
+                    }
+                </script>
+            </div>
+
+            <div id="overlay"></div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/script1.js"></script>
+
+        <script>
+            window.addEventListener('load', function () {
+                const loader = document.getElementById('loader');
+                setTimeout(() => {
+                    loader.classList.add('fadeOut');
+                }, 300);
+            });
+        </script>
+</body>
+
+</html>

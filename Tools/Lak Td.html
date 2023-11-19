@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Dynamic Table Generator</h1>
+
+<label for="namesInput">Enter Names (one per line):</label>
+<textarea id="namesInput" rows="5" placeholder="Enter names here"></textarea>
+
+<button onclick="generateTable()">Generate Table</button>
+<button onclick="copyTableCode()">Copy Table Code</button>
+
+<div id="table-container">
+    <!-- Generated table will be placed here -->
+</div>
+
+<script>
+    function generateTable() {
+        var namesInput = document.getElementById("namesInput").value;
+        var namesList = namesInput.split('\n').map(name => name.trim());
+
+        var tableCode = createTable(namesList);
+        document.getElementById("table-container").innerHTML = tableCode;
+    }
+
+    function createTable(names) {
+        var tableHeader = `
+        <table style="text-wrap: nowrap;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>###</th>
+                </tr>
+            </thead>
+            <tbody>
+        `;
+
+        var tableFooter = `
+            </tbody>
+        </table>
+        `;
+
+        var tableRows = "";
+        for (var i = 0; i < names.length; i++) {
+            if (names[i]) {  // Skip empty lines
+                var formattedName = names[i].replace(":", "_").replace("||", "__").replace("|", "_");
+                var pdfLink = `https://lj1.yashrajpw.workers.dev/0:/pdfs/${formattedName}.pdf`;
+
+                var tableRow = `
+                    <tr>
+                        <td>${names[i]}</td>
+                        <td><a class="button" href="${pdfLink}" style="text-align: center; text-wrap: wrap;">Download</a></td>
+                    </tr>
+                `;
+                tableRows += tableRow;
+            }
+        }
+
+        var htmlTable = tableHeader + tableRows + tableFooter;
+        return htmlTable;
+    }
+
+    function copyTableCode() {
+        var tableCode = document.getElementById("table-container").innerHTML;
+        var tempTextArea = document.createElement("textarea");
+        tempTextArea.value = tableCode;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextArea);
+        alert("Table code copied to clipboard!");
+    }
+</script>
+
+</body>
+</html>
