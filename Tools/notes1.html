@@ -75,7 +75,55 @@
         });
     }
 
-    // The rest of your code remains unchanged...
+    function copyRowCode() {
+        var rowSelector = document.getElementById("rowSelector");
+        var selectedIndex = rowSelector.selectedIndex;
+
+        if (selectedIndex !== -1) {
+            var selectedRow = document.querySelectorAll("#generatedTable tbody tr")[selectedIndex];
+            var rowCode = selectedRow.outerHTML;
+
+            // Create a temporary textarea element to hold the row code
+            var textarea = document.createElement("textarea");
+            textarea.value = rowCode;
+            document.body.appendChild(textarea);
+
+            // Select and copy the content
+            textarea.select();
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(textarea);
+
+            // Alert the user that the code has been copied
+            alert("Row code has been copied to the clipboard!");
+        } else {
+            alert("Please select a row to copy.");
+        }
+    }
+
+    function copyTableCode() {
+        var generatedTableCode = document.getElementById("generatedTable").innerHTML;
+
+        if (generatedTableCode) {
+            // Create a temporary textarea element to hold the code
+            var textarea = document.createElement("textarea");
+            textarea.value = generatedTableCode;
+            document.body.appendChild(textarea);
+
+            // Select and copy the content
+            textarea.select();
+            document.execCommand("copy");
+
+            // Remove the temporary textarea
+            document.body.removeChild(textarea);
+
+            // Alert the user that the code has been copied
+            alert("Table code has been copied to the clipboard!");
+        } else {
+            alert("Please generate the table first.");
+        }
+    }
 </script>
 
 </body>
