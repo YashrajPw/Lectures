@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YashRajPW</title>
+        <link rel="stylesheet" type="text/css" href="style1.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/site.webmanifest">
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+        <noscript>
+        <h2>JavaScript is disabled! Please enable JavaScript in your web browser.</h2>
+        <style type="text/css">
+            .container { display:none; }
+        </style>
+    </noscript>
+<a href="https://t.me/yashrajpw" target="_blank" class="telegram-float">
+        <div class="telegram-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><path d="M56.4,8.2l-51.2,20c-1.7,0.6-1.6,3,0.1,3.5l9.7,2.9c2.1,0.6,3.8,2.2,4.4,4.3l3.8,12.1c0.5,1.6,2.5,2.1,3.7,0.9 l5.2-5.3c0.9-0.9,2.2-1,3.2-0.3l11.5,8.4c1.6,1.2,3.9,0.3,4.3-1.7l8.7-41.8C60.4,9.1,58.4,7.4,56.4,8.2z M50,17.4L29.4,35.6 c-1.1,1-1.9,2.4-2.0,3.9c-0.2,1.5-2.3,1.7-2.8,0.3l-0.9-3c-0.7-2.2,0.2-4.5,2.1-5.7l23.5-14.6C49.9,16.1,50.5,16.9,50,17.4z"></path></svg>
+        </div>
+    </a>
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+
+       
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+          
+        <video id="player" style=" width: 640px;"> 
+            <source src="" type="video/mp4" />
+        </video>
+            <h2>🎥Video Quality Selector</h2>
+            <select id="mp4QualitySelector">
+                
+            </select>
+            <button id="playMP4Button">Play Here</button>
+
+            <h2>Download Lectures High Speed⚡️</h2>
+            <select id="downloadQualitySelector">
+               
+            </select>
+            <a id="downloadButton" href="#" download style="text-decoration: none;"><button>Download Video</button></a>
+
+
+               <h2>Play Externally (🚀Fast)</h2>
+            
+            <select id="playQualitySelector">
+                
+            </select>
+
+            
+            <button id="copyButton">Copy Link</button>
+            <button id="playButton">Play Video File </button>
+            <button id="open1DM">Download with 1DM</button>
+            <button id="openVLC">Open with VLC</button>
+            <button id="openMXPlayerFree">Open with MX Player Free</button>
+            <button id="openMXPlayerPro">Open with MX Player Pro</button>
+            
+            
+
+            
+        </div>
+    </div>
+
+    <script>
+       const player = new Plyr('#player', {
+    ratio: '16:9', // Set the aspect ratio you prefer (e.g., '16:9' for widescreen)
+});
+    // Set the player's width using JavaScript
+player.elements.container.style.width = '400px'; // Change the width to your preferred size
+        // Function to update Plyr.io player source
+        function updatePlyrSource() {
+            const selectedMP4Option = mp4QualitySelector.options[mp4QualitySelector.selectedIndex];
+            const mp4VideoUrl = selectedMP4Option.getAttribute('data-video-url');
+            player.source = {
+                type: 'video',
+                sources: [
+                    {
+                        src: mp4VideoUrl,
+                        type: 'video/mp4',
+                    },
+                ],
+            };
+        }
+    
+        // Event listener for the "Play Video (Browser)" button
+        document.getElementById('playButton').addEventListener('click', function() {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+            window.open(videoUrl, '_blank');
+        });
+    
+        // Event listener for the "Download Video" button
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            const selectedDownloadOption = downloadQualitySelector.options[downloadQualitySelector.selectedIndex];
+            const videoUrl = selectedDownloadOption.getAttribute('data-video-url');
+            downloadButton.href = videoUrl;
+        });
+    
+        // Event listener for the "Play MP4 Video (Plyr.io)" button
+        document.getElementById('playMP4Button').addEventListener('click', function() {
+            updatePlyrSource();
+            player.play();
+        });
+    
+        // Event listener for the "Open with VLC" button
+        document.getElementById('openVLC').addEventListener('click', function() {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+            window.open('vlc://' + videoUrl);
+        });
+    
+        // Function to open the video in MX Player Free
+function openInMXPlayerFree() {
+    openInMXPlayer('com.mxtech.videoplayer.ad');
+}
+
+document.getElementById('openMXPlayerFree').addEventListener('click', openInMXPlayerFree);
+
+// Function to open the video in MX Player Pro
+function openInMXPlayerPro() {
+    openInMXPlayer('com.mxtech.videoplayer.pro');
+}
+
+document.getElementById('openMXPlayerPro').addEventListener('click', openInMXPlayerPro);
+
+// General function to open MX Player with a specific package name
+function openInMXPlayer(packageName) {
+    const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+    const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+
+    // Create an intent URL for MX Player
+    const intentUrl = `intent:${videoUrl}#Intent;package=${packageName};end`;
+
+    // Open the intent URL
+    window.open(intentUrl, '_blank');
+}
+
+// Repeat similar modifications for other players (VLC, 1DM)...
+
+
+
+// Event listener for the "Open with 1DM" button
+document.getElementById('open1DM').addEventListener('click', function() {
+        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+        const intentUrl = 'intent:'+ videoUrl + '#Intent;package=idm.internet.download.manager;end';
+        window.open(intentUrl);
+    });
+
+    // Function to copy the updated m3u8 link to the clipboard
+    function copyM3U8Link() {
+        const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+        const videoUrl = selectedPlayOption.getAttribute('data-video-url');
+
+        // Create a temporary input element to copy the text to clipboard
+        const tempInput = document.createElement('input');
+        tempInput.value = videoUrl;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        // Provide user feedback (you can customize this part)
+        alert('Link copied to clipboard!');
+    }
+
+    // Add event listener for the copy button
+    document.getElementById('copyButton').addEventListener('click', copyM3U8Link);
+        function updateQualityDropdowns(m3u8Link) {
+            const qualityOptions = ["240", "360", "480", "720"];
+            const selectElement = document.getElementById('playQualitySelector');
+            const downloadSelectElement = document.getElementById('downloadQualitySelector');
+            const downloadButton = document.getElementById('downloadButton');
+            const mp4QualitySelector = document.getElementById('mp4QualitySelector');
+    
+            // Clear existing options
+            selectElement.innerHTML = '';
+            downloadSelectElement.innerHTML = '';
+            mp4QualitySelector.innerHTML = '';
+    
+            // Extract the link before the last underscore
+            const linkBeforeUnderscore = m3u8Link.substring(0, m3u8Link.lastIndexOf("_"));
+    
+            // Add quality options to the selection dropdowns
+            qualityOptions.forEach(option => {
+                const resolution = option;
+    
+                // Add the quality option to the playback selector
+                const playOption = document.createElement('option');
+                playOption.value = resolution + "p";
+                playOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`;
+                playOption.textContent = resolution + "p";
+    
+                // Add the quality option to the download selector
+                const downloadOption = document.createElement('option');
+                downloadOption.value = resolution + "p";
+                downloadOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.mp4`;
+                downloadOption.textContent = resolution + "p";
+    
+                // Add the quality option to the MP4 selector
+                const mp4Option = document.createElement('option');
+                mp4Option.value = resolution + "p";
+                mp4Option.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.mp4`;
+                mp4Option.textContent = resolution + "p";
+    
+                selectElement.appendChild(playOption);
+                downloadSelectElement.appendChild(downloadOption);
+                mp4QualitySelector.appendChild(mp4Option);
+            });
+    
+            // Set the download link to the default selection
+            const selectedDownloadOption = downloadQualitySelector.options[downloadQualitySelector.selectedIndex];
+            downloadButton.href = selectedDownloadOption.getAttribute('data-video-url');
+    
+            // Update Plyr.io source when the quality dropdown is updated
+            updatePlyrSource();
+        }
+    
+        // Extract the m3u8 link from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const m3u8Link = urlParams.get("m");
+    
+        if (m3u8Link) {
+            updateQualityDropdowns(m3u8Link);
+        } else {
+            // Invalid URL
+            alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
+        }
+    </script>
+    
+   
+
+
+
+
+
+</body>
+</html>

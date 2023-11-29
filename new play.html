@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLS.js and Plyr.io Integration</title>
+
+    <!-- Plyr.io CSS -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.7/plyr.css" />
+
+    <!-- HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <!-- Plyr.io -->
+    <script src="https://cdn.plyr.io/3.6.7/plyr.js"></script>
+</head>
+<body>
+
+<!-- Video Player -->
+<video id="player" controls>
+    Your browser does not support the video tag.
+</video>
+
+<!-- Quality Selector Dropdown -->
+<select id="qualitySelector">
+    <option value="240">240p</option>
+    <option value="360">360p</option>
+    <option value="480">480p</option>
+    <option value="720">720p</option>
+</select>
+
+<!-- Button to Update Quality -->
+<button id="updateQualityBtn">Update Quality</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const player = new Plyr('#player', {
+            // Plyr configuration options
+        });
+
+        const hls = new Hls();
+        let currentQuality = '720';
+
+        // Get M3U8 link from the URL parameter
+        const m3u8Link = new URLSearchParams(window.location.search).get('m');
+
+        if (m3u8Link) {
+            hls.loadSource(m3u8Link);
+            hls.attachMedia(player.media);
+
+            // Event listener for Button Click
+            document.getElementById('updateQualityBtn').addEventListener('click', () => {
+                const selectedQuality = document.getElementById('qualitySelector').value;
+                if (selectedQuality !== currentQuality) {
+                    currentQuality = selectedQuality;
+                    const newSource = m3u8Link.replace(/_(\d+)p\.m3u8/, `_${currentQuality}.m3u8`);
+                    player.source = {
+                        type: 'video',
+                        sources: [
+                            {
+                                src: newSource,
+                                type: 'application/x-mpegURL',
+                                size: `${currentQuality}p`,
+                            },
+                        ],
+                    };
+                }
+            });
+
+            // Expose the player instance for external use (optional)
+            window.player = player;
+        } else {
+            console.error('No M3U8 link provided in the URL');
+        }
+    });
+</script>
+</body>
+</html>

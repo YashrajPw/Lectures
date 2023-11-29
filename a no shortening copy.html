@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YashRajPW</title>
+        <link rel="stylesheet" type="text/css" href="style1.css">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/site.webmanifest">
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+       
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+        
+
+           
+           
+            <video id="player" style="width: 640px;"></video>
+            <h2>🎥Video Quality Selector</h2>
+            <select id="plyrQualitySelector"></select> <!-- Change this id -->
+            <button id="playMP4Button">Play Here</button>
+
+            <h2>Download Lectures High Speed⚡️</h2>
+            <select id="downloadSelectElement"></select>
+            <a id="downloadButton" href="#" download style="text-decoration: none;"><button>Download Video</button></a>
+
+            <h2>Play Externally (🚀Fast)</h2>
+            <select id="externalQualitySelector"></select> <!-- Change this id -->
+
+            
+            <button id="copyButton">Copy Link</button>
+            <button id="playButton">Play Video File </button>
+            <button id="open1DM">Download with 1DM</button>
+            <button id="openVLC">Open with VLC</button>
+            <button id="openMXPlayerFree">Open with MX Player Free</button>
+            <button id="openMXPlayerPro">Open with MX Player Pro</button>
+          
+           
+
+            
+        </div>
+    </div>
+
+    <script>
+       const player = new Plyr('#player', {
+        ratio: '16:9',
+        // Use Hls.js as the source handler for M3U8 files
+        plugins: {
+            hls: {
+                enable: true,
+                debug: false,
+            },
+        },
+    });
+// Function to update Plyr.io player source using Hls.js
+function updatePlyrSourceHLS() {
+    const selectedM3U8Option = plyrQualitySelector.options[plyrQualitySelector.selectedIndex];
+    const m3u8VideoUrl = selectedM3U8Option.dataset.videoUrl;
+    player.source = {
+        type: 'video',
+        sources: [
+            {
+                src: m3u8VideoUrl,
+                type: 'application/x-mpegURL',
+            },
+        ],
+    };
+}
+
+// Event listener for the "Play MP4 Video (Plyr.io)" button
+document.getElementById('playMP4Button').addEventListener('click', function () {
+        updatePlyrSourceHLS();
+
+        player.play();
+    });
+    
+    function updateQualityDropdowns(m3u8Link) {
+            const qualityOptions = ["240", "360", "480", "720"];
+            const plyrSelectElement = document.getElementById('plyrQualitySelector');
+            const downloadSelectElement = document.getElementById('downloadSelectElement');
+            const externalSelectElement = document.getElementById('externalQualitySelector'); // Change this line
+            const downloadButton = document.getElementById('downloadButton');
+
+            // Clear existing options
+            plyrSelectElement.innerHTML = '';
+            downloadSelectElement.innerHTML = '';
+            externalSelectElement.innerHTML = ''; // Change this line
+
+            // Extract the link before the last underscore
+            const linkBeforeUnderscore = m3u8Link.substring(0, m3u8Link.lastIndexOf("_"));
+
+            // Add quality options to the selection dropdowns
+            qualityOptions.forEach(option => {
+                const resolution = option;
+
+                // Add the quality option to the Plyr.io playback selector
+                const plyrOption = document.createElement('option');
+                plyrOption.value = resolution + "p";
+                plyrOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`;
+                plyrOption.textContent = resolution + "p";
+
+                // Add the quality option to the download selector
+                const downloadOption = document.createElement('option');
+                downloadOption.value = resolution + "p";
+                downloadOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.mp4`;
+                downloadOption.textContent = resolution + "p";
+
+                // Add the quality option to the external playback selector
+                const externalOption = document.createElement('option');
+                externalOption.value = resolution + "p";
+                externalOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`; // Change this line
+                externalOption.textContent = resolution + "p";
+
+                plyrSelectElement.appendChild(plyrOption);
+                downloadSelectElement.appendChild(downloadOption);
+                externalSelectElement.appendChild(externalOption); // Change this line
+            });
+
+            // Set the download link to the default selection
+            const selectedDownloadOption = downloadSelectElement.options[downloadSelectElement.selectedIndex];
+            downloadButton.href = selectedDownloadOption.dataset.videoUrl;
+
+            // Update Plyr.io source when the quality dropdown is updated
+            updatePlyrSourceHLS();
+
+        }
+
+    
+        
+        // Event listener for the "Play Video (Browser)" button
+        document.getElementById('playButton').addEventListener('click', function () {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.dataset.videoUrl;
+            window.open(videoUrl, '_blank');
+        });
+    
+        // Event listener for the "Download Video" button
+        document.getElementById('downloadButton').addEventListener('click', function () {
+            const selectedDownloadOption = downloadSelectElement.options[downloadSelectElement.selectedIndex];
+            const videoUrl = selectedDownloadOption.dataset.videoUrl;
+            downloadButton.href = videoUrl;
+        });
+    
+        // Event listener for the "Play MP4 Video (Plyr.io)" button
+        document.getElementById('playMP4Button').addEventListener('click', function () {
+            updatePlyrSourceHLS();
+
+            player.play();
+        });
+    
+        // Event listener for the "Open with VLC" button
+        document.getElementById('openVLC').addEventListener('click', function () {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.dataset.videoUrl;
+            window.open('vlc://' + videoUrl);
+        });
+    
+        // Function to open the video in MX Player Free
+        function openInMXPlayerFree() {
+            openInMXPlayer('com.mxtech.videoplayer.ad');
+        }
+    
+        document.getElementById('openMXPlayerFree').addEventListener('click', openInMXPlayerFree);
+    
+        // Function to open the video in MX Player Pro
+        function openInMXPlayerPro() {
+            openInMXPlayer('com.mxtech.videoplayer.pro');
+        }
+    
+        document.getElementById('openMXPlayerPro').addEventListener('click', openInMXPlayerPro);
+    
+        // General function to open MX Player with a specific package name
+        function openInMXPlayer(packageName) {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.dataset.videoUrl;
+    
+            // Create an intent URL for MX Player
+            const intentUrl = `intent:${videoUrl}#Intent;package=${packageName};end`;
+    
+            // Open the intent URL
+            window.open(intentUrl, '_blank');
+        }
+    
+        // Repeat similar modifications for other players (VLC, 1DM)...
+    
+        // Event listener for the "Open with 1DM" button
+        document.getElementById('open1DM').addEventListener('click', function () {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.dataset.videoUrl;
+            const intentUrl = 'intent:' + videoUrl + '#Intent;package=idm.internet.download.manager;end';
+            window.open(intentUrl);
+        });
+    
+        // Function to copy the updated m3u8 link to the clipboard
+        function copyM3U8Link() {
+            const selectedPlayOption = playQualitySelector.options[playQualitySelector.selectedIndex];
+            const videoUrl = selectedPlayOption.dataset.videoUrl;
+    
+            // Create a temporary input element to copy the text to clipboard
+            const tempInput = document.createElement('input');
+            tempInput.value = videoUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+    
+            // Provide user feedback (you can customize this part)
+            alert('Link copied to clipboard!');
+        }
+    
+        // Add event listener for the copy button
+        document.getElementById('copyButton').addEventListener('click', copyM3U8Link);
+    
+        function updateQualityDropdowns(m3u8Link) {
+            const qualityOptions = ["240", "360", "480", "720"];
+            const selectElement = document.getElementById('playQualitySelector');
+            const downloadSelectElement = document.getElementById('downloadSelectElement');
+            const downloadButton = document.getElementById('downloadButton');
+    
+            // Clear existing options
+            selectElement.innerHTML = '';
+            downloadSelectElement.innerHTML = '';
+    
+            // Extract the link before the last underscore
+            const linkBeforeUnderscore = m3u8Link.substring(0, m3u8Link.lastIndexOf("_"));
+    
+            // Add quality options to the selection dropdowns
+            qualityOptions.forEach(option => {
+                const resolution = option;
+    
+                // Add the quality option to the playback selector
+                const playOption = document.createElement('option');
+                playOption.value = resolution + "p";
+                playOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`;
+                playOption.textContent = resolution + "p";
+    
+                // Add the quality option to the download selector
+                const downloadOption = document.createElement('option');
+                downloadOption.value = resolution + "p";
+                downloadOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.mp4`;
+                downloadOption.textContent = resolution + "p";
+    
+                selectElement.appendChild(playOption);
+                downloadSelectElement.appendChild(downloadOption);
+            });
+    
+            // Set the download link to the default selection
+            const selectedDownloadOption = downloadSelectElement.options[downloadSelectElement.selectedIndex];
+            downloadButton.href = selectedDownloadOption.dataset.videoUrl;
+    
+            // Update Plyr.io source when the quality dropdown is updated
+            updatePlyrSourceHLS();
+
+        }
+    
+        // Extract the m3u8 link from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const m3u8Link = urlParams.get("m");
+
+    if (m3u8Link) {
+        // Call updateQualityDropdowns after Plyr.io player is initialized
+        player.on('ready', function () {
+            updateQualityDropdowns(m3u8Link);
+        });
+    } else {
+        // Invalid URL
+        alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
+    }
+    </script>
+    
+   
+
+</body>
+</html>
