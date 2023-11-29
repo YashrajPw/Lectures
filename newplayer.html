@@ -245,7 +245,18 @@
 
             // Initialize Plyr.io
             initializePlyr();
+   // Function to check if the user is on a PC
+   function isPC() {
+                return window.innerWidth > 768; // Adjust the threshold as needed
+            }
 
+            // Hide buttons if the user is on a PC
+            if (isPC()) {
+                document.getElementById('openVLC').style.display = 'none';
+                document.getElementById('openMXPlayerFree').style.display = 'none';
+                document.getElementById('openMXPlayerPro').style.display = 'none';
+                document.getElementById('open1DM').style.display = 'none';
+            }
             // Extract the m3u8 link from the URL
             const urlParams = new URLSearchParams(window.location.search);
             const m3u8Link = urlParams.get("m");
