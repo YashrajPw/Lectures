@@ -1,0 +1,467 @@
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>YashRajPW</title>
+        
+        <link rel="apple-touch-icon" sizes="180x180"
+            href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32"
+            href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16"
+            href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/site.webmanifest">
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+        <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+        <noscript>
+            <h2>JavaScript is disabled! Please enable JavaScript in your web browser.</h2>
+            <style type="text/css">
+                .container {
+                    display: none;
+                }
+            </style>
+        </noscript>
+        <a href="https://t.me/yashrajpw" target="_blank" class="telegram-float">
+            <div class="telegram-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+                    <path
+                        d="M56.4,8.2l-51.2,20c-1.7,0.6-1.6,3,0.1,3.5l9.7,2.9c2.1,0.6,3.8,2.2,4.4,4.3l3.8,12.1c0.5,1.6,2.5,2.1,3.7,0.9 l5.2-5.3c0.9-0.9,2.2-1,3.2-0.3l11.5,8.4c1.6,1.2,3.9,0.3,4.3-1.7l8.7-41.8C60.4,9.1,58.4,7.4,56.4,8.2z M50,17.4L29.4,35.6 c-1.1,1-1.9,2.4-2.0,3.9c-0.2,1.5-2.3,1.7-2.8,0.3l-0.9-3c-0.7-2.2,0.2-4.5,2.1-5.7l23.5-14.6C49.9,16.1,50.5,16.9,50,17.4z">
+                    </path>
+                </svg>
+            </div>
+        </a>
+    
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+        <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+    <style>
+    /* Reset some default styles for cross-browser consistency */
+    
+
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: #fff; /* White background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .thumbnail {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        color: #000000; /* Blue text color */
+    }
+
+    p {
+        color: #333; /* Dark gray text color */
+        margin-bottom: 20px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc; /* Light gray border */
+        border-radius: 5px;
+        background-color: #fff; /* White background */
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #000000; /* Blue button background */
+        color: #fff; /* White text color */
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    button:hover {
+        background-color: #00000080; /* Darker blue on hover */
+    }
+
+    /* ... Your existing CSS ... */
+
+    /* Media queries for responsive design */
+
+    @media (max-width: 768px) {
+        /* Adjust styles for smaller screens (e.g., tablets) */
+        .container {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        /* Styles for smaller screens (e.g., smartphones) */
+        .container {
+            padding: 10px;
+            max-width: 90%; /* Reduce max width to create gaps on left and right */
+            margin: 0 auto; /* Center the container */
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        select, button {
+            font-size: 14px;
+        }
+    }
+
+    /* Additional mobile-specific styles */
+
+    @media (max-width: 320px) {
+        /* Further adjustments for smaller screens (e.g., small smartphones) */
+        h1 {
+            font-size: 20px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .telegram-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .telegram-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation-name: pulse;
+        animation-duration: 1.5s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+        }
+
+        80% {
+            box-shadow: 0 0 0 14px rgba(0, 136, 204, 0);
+        }
+    }
+
+    .telegram-icon svg {
+        fill: #fff;
+        width: 30px;
+        height: 30px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        max-width: 90%;
+        max-height: 80vh; /* 80% of the viewport height */
+        width: 600px;
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 900;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        margin-bottom: 20px;
+    }
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .popup-container {
+            width: 90%;
+        }
+    }
+
+    .close-btn-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    .close-btn {
+        font-size: 20px;
+        padding: 5px 10px;
+        background-color: #ccc;
+        border-radius: 5px;
+    }
+
+    /* Custom CSS to hide volume control */
+    .plyr__controls .plyr__volume {
+        display: none;
+    }
+
+    .button {
+        background-color: #000000;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        background-color: #00000080;
+    }
+
+    /* Add this CSS code to make the popup responsive */
+    .popup-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        background-color: #f5f5f5;
+        padding: 20px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 80%; /* Adjust the maximum width as needed */
+        width: 300px; /* Set a default width for smaller screens */
+        text-align: center;
+    }
+
+    /* Add this CSS code to make the close button responsive */
+    .close-btn-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    /* Add this CSS code to make the popup responsive on smaller screens */
+    @media screen and (max-width: 600px) {
+        .popup-container {
+            max-width: 90%; /* Adjust the maximum width for smaller screens */
+            width: 80%; /* Set a default width for smaller screens */
+        }
+    }
+
+
+
+
+    </style>
+
+
+        <div class="container">
+            <div class="content">
+            
+                <video id="player" controls>
+                    <!-- Video source will be added dynamically using Plyr -->
+                </video>
+            
+                <h2>Play Download Lecture🚀</h2>
+                <select id="playHLSQualitySelector">
+
+                </select>
+                <button id="playHLSButton">Play Here</button>
+
+                <div>
+                    <button id="copyButton">Copy Link</button>
+                    <button id="openVLC">Open with VLC</button>
+                    <button id="openMXPlayerFree">Open with MX Player</button>
+                    <button id="openMXPlayerPro">Open with MX Player Pro</button>
+                    <button id="open1DM">Open with 1DM</button>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const video = document.getElementById('player');
+                const qualitySelector = document.getElementById('playHLSQualitySelector');
+                const playButton = document.getElementById('playHLSButton');
+                const copyButton = document.getElementById('copyButton');
+                const openVLCButton = document.getElementById('openVLC');
+                const openMXPlayerFreeButton = document.getElementById('openMXPlayerFree');
+                const openMXPlayerProButton = document.getElementById('openMXPlayerPro');
+                const open1DMButton = document.getElementById('open1DM');
+
+                let hls;
+                let player;
+
+                function initializePlyr() {
+                    player = new Plyr('#player', {
+                        captions: { active: true, update: true, language: 'auto' },
+                        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'fullscreen'],
+                    });
+                }
+
+                function playVideo(url) {
+                    if (Hls.isSupported()) {
+                        if (hls) {
+                            hls.destroy();
+                        }
+                        hls = new Hls();
+                        hls.loadSource(url);
+                        hls.attachMedia(video);
+                        video.play();
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = url;
+                        video.addEventListener('loadedmetadata', function () {
+                            video.play();
+                        });
+                    }
+                }
+
+                function updateQualityDropdowns(m3u8Link) {
+                    const qualityOptions = ["240", "360", "480", "720"];
+
+                    // Clear existing options
+                    qualitySelector.innerHTML = '';
+
+                    // Extract the link before the last underscore
+                    const linkBeforeUnderscore = m3u8Link.substring(0, m3u8Link.lastIndexOf("_"));
+
+                    // Add quality options to the selection dropdown
+                    qualityOptions.forEach(option => {
+                        const resolution = option;
+
+                        // Add the quality option to the HLS selector
+                        const hlsOption = document.createElement('option');
+                        hlsOption.value = resolution + "p";
+                        hlsOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`;
+                        hlsOption.textContent = resolution + "p";
+
+                        qualitySelector.appendChild(hlsOption);
+                    });
+                }
+
+                // Event listener for the "Play M3U8 Video with HLS.js" button
+                playButton.addEventListener('click', function () {
+                    const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
+                    const m3u8Url = selectedQualityOption.getAttribute('data-video-url');
+                    playVideo(m3u8Url);
+                });
+
+                // Event listener for the "Copy Link" button
+                copyButton.addEventListener('click', function () {
+                    const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
+                    const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+
+                    // Create a temporary input element to copy the text to clipboard
+                    const tempInput = document.createElement('input');
+                    tempInput.value = videoUrl;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+
+                    // Provide user feedback (you can customize this part)
+                    alert('Link copied to clipboard!');
+                });
+
+                // Event listener for the "Open with VLC" button
+                openVLCButton.addEventListener('click', function () {
+                    const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
+                    const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                    window.open('vlc://' + videoUrl);
+                });
+
+                // Event listener for the "Open with MX Player Free" button
+                openMXPlayerFreeButton.addEventListener('click', function () {
+                    openInMXPlayer('com.mxtech.videoplayer.ad');
+                });
+
+                // Event listener for the "Open with MX Player Pro" button
+                openMXPlayerProButton.addEventListener('click', function () {
+                    openInMXPlayer('com.mxtech.videoplayer.pro');
+                });
+
+                // Event listener for the "Open with 1DM" button
+                open1DMButton.addEventListener('click', function () {
+                    const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
+                    const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                    const intentUrl = 'intent:' + videoUrl + '#Intent;package=idm.internet.download.manager;end';
+                    window.open(intentUrl);
+                });
+
+                // General function to open MX Player with a specific package name
+                function openInMXPlayer(packageName) {
+                    const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
+                    const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+
+                    // Create an intent URL for MX Player
+                    const intentUrl = `intent:${videoUrl}#Intent;package=${packageName};end`;
+
+                    // Open the intent URL
+                    window.open(intentUrl, '_blank');
+                }
+
+                // Initialize Plyr.io
+                initializePlyr();
+
+                // Extract the m3u8 link from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const m3u8Link = urlParams.get("m");
+
+                if (m3u8Link) {
+                    updateQualityDropdowns(m3u8Link);
+                } else {
+                    // Invalid URL
+                    alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
+                }
+            });
+        </script>
+  

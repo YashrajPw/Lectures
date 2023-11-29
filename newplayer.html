@@ -35,7 +35,7 @@
    
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 
 </head>
 
@@ -59,6 +59,62 @@
                 <button id="openMXPlayerFree">Open with MX Player</button>
                 <button id="openMXPlayerPro">Open with MX Player Pro</button>
                 <button id="open1DM">Open with 1DM</button>
+                <div>
+    
+                <a href="#" id="popupLink" style="text-decoration: none;"> <b style="color: red;">How to View Lecture Tutorial</b> </a>
+                <div class="popup-container" id="popup">
+                    <div class="close-btn-container" onclick="closePopup()">
+                        <span class="close-btn">X</span>
+                    </div>
+                    <h2 style="text-align: center;">How To Play Lectures in PC</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/rGoTTRWn8k8" title="How To Play Lectures in PC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <h2 style="text-align: center;">How to Download Lectures in PC</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VC8KnF-Yjv4" title="How to Download Lectures in PC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <b>Available for Windows Only</b><br>
+                        <a class="button" href="https://vps.noobs.workers.dev/0:/32 bit.zip">Download 32-bit Software</a>
+                        <a class="button" href="https://vps.noobs.workers.dev/0:/64 bit.zip">Download 64-bit Software</a>
+                        <br>
+                        <b>Available for All Chrome PC Users</b><br>
+                        <a class="button" href="https://chrome.google.com/webstore/detail/m3u8-downloader/pibnhedpldjakfpnfkabbnifhmokakfb/related">M3u8 Downloader for Chrome</a>
+                        <a class="button" href="https://chrome.google.com/webstore/detail/play-hls/hahkjjkedonglpienpfiganogikkkoii">M3u8 Player for Chrome</a>
+                    </div>
+                    
+                    <!-- Add more video containers if needed -->
+                </div>
+                <script>
+                   // Function to close the popup
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                // Function to open the popup
+                function openPopup() {
+                    document.getElementById('popup').style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+                }
+            
+                // Attach the openPopup function to the link click event
+                document.getElementById('popupLink').addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+                    openPopup();
+                });
+            
+                // Attach the closePopup function to the close button click event
+                document.getElementById('closePopupBtn').addEventListener('click', closePopup);
+            
+                // Attach the closePopup function to the overlay click event
+                document.getElementById('overlay').addEventListener('click', closePopup);
+            });
+            
+                </script>
+            </div>
             </div>
         </div>
     </div>
