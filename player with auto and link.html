@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YashRajPW</title>
-    <link rel="stylesheet" type="text/css" href="style1.css">
+    <link rel="stylesheet" type="text/css" href="style2.css">
     <link rel="apple-touch-icon" sizes="180x180"
         href="https://cdn.jsdelivr.net/gh/ash314314/image-Cdn@main/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32"
@@ -35,7 +35,7 @@
    
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-
+    
 
 </head>
 
@@ -59,11 +59,68 @@
                 <button id="openMXPlayerFree">Open with MX Player</button>
                 <button id="openMXPlayerPro">Open with MX Player Pro</button>
                 <button id="open1DM">Open with 1DM</button>
+                <div>
+    
+                <a href="#" id="popupLink" style="text-decoration: none;"> <b style="color: red;">How to View Lecture Tutorial</b> </a>
+                <div class="popup-container" id="popup">
+                    <div class="close-btn-container" onclick="closePopup()">
+                        <span class="close-btn">X</span>
+                    </div>
+                    <h2 style="text-align: center;">How To Play Lectures in PC</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/rGoTTRWn8k8" title="How To Play Lectures in PC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <h2 style="text-align: center;">How to Download Lectures in PC</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/VC8KnF-Yjv4" title="How to Download Lectures in PC" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <b>Available for Windows Only</b><br>
+                        <a class="button" href="https://vps.noobs.workers.dev/0:/32 bit.zip">Download 32-bit Software</a>
+                        <a class="button" href="https://vps.noobs.workers.dev/0:/64 bit.zip">Download 64-bit Software</a>
+                        <br>
+                        <b>Available for All Chrome PC Users</b><br>
+                        <a class="button" href="https://chrome.google.com/webstore/detail/m3u8-downloader/pibnhedpldjakfpnfkabbnifhmokakfb/related">M3u8 Downloader for Chrome</a>
+                        <a class="button" href="https://chrome.google.com/webstore/detail/play-hls/hahkjjkedonglpienpfiganogikkkoii">M3u8 Player for Chrome</a>
+                    </div>
+                    
+                    <!-- Add more video containers if needed -->
+                </div>
+                <script>
+                   // Function to close the popup
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                // Function to open the popup
+                function openPopup() {
+                    document.getElementById('popup').style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+                }
+            
+                // Attach the openPopup function to the link click event
+                document.getElementById('popupLink').addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+                    openPopup();
+                });
+            
+                // Attach the closePopup function to the close button click event
+                document.getElementById('closePopupBtn').addEventListener('click', closePopup);
+            
+                // Attach the closePopup function to the overlay click event
+                document.getElementById('overlay').addEventListener('click', closePopup);
+            });
+            
+                </script>
+            </div>
             </div>
         </div>
     </div>
 
     
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -75,7 +132,7 @@
             const openMXPlayerFreeButton = document.getElementById('openMXPlayerFree');
             const openMXPlayerProButton = document.getElementById('openMXPlayerPro');
             const open1DMButton = document.getElementById('open1DM');
-
+            const defaultOptions = {};
             let hls;
             let player;
 
@@ -84,6 +141,38 @@
                     captions: { active: true, update: true, language: 'auto' },
                     controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'fullscreen'],
                 });
+
+                // Trigger video play after Plyr is initialized
+                playAutoVideo();
+            }
+
+            function playAutoVideo() {
+                const m3u8Url = getM3u8Link();
+                if (m3u8Url) {
+                    if (Hls.isSupported()) {
+                        if (hls) {
+                            hls.destroy();
+                        }
+                        hls = new Hls();
+                        hls.loadSource(`${m3u8Url}_master.m3u8`); // Use _master.m3u8
+                        hls.attachMedia(video);
+                        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                            video.play();
+                        });
+                    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                        video.src = `${m3u8Url}_master.m3u8`; // Use _master.m3u8
+                        video.addEventListener('loadedmetadata', function () {
+                            video.play();
+                        });
+                    }
+                } else {
+                    alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
+                }
+            }
+
+            function getM3u8Link() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get("m");
             }
 
             function playVideo(url) {
@@ -94,49 +183,53 @@
                     hls = new Hls();
                     hls.loadSource(url);
                     hls.attachMedia(video);
-                    video.play();
+                    video.play(); // Start playing the video
                 } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                     video.src = url;
                     video.addEventListener('loadedmetadata', function () {
-                        video.play();
+                        video.play(); // Start playing the video
                     });
                 }
             }
 
             function updateQualityDropdowns(m3u8Link) {
-                const qualityOptions = ["240", "360", "480", "720"];
-
+                const qualityOptions = ["240", "360", "480", "720", "master"];
+                
                 // Clear existing options
                 qualitySelector.innerHTML = '';
-
-                // Extract the link before the last underscore
-                const linkBeforeUnderscore = m3u8Link.substring(0, m3u8Link.lastIndexOf("_"));
-
+                
                 // Add quality options to the selection dropdown
                 qualityOptions.forEach(option => {
-                    const resolution = option;
-
-                    // Add the quality option to the HLS selector
+                    const resolution = option === "master" ? "Auto" : option.charAt(0).toUpperCase() + option.slice(1);
                     const hlsOption = document.createElement('option');
-                    hlsOption.value = resolution + "p";
-                    hlsOption.dataset.videoUrl = `${linkBeforeUnderscore}_${resolution}.m3u8`;
-                    hlsOption.textContent = resolution + "p";
-
+                    hlsOption.value = option;
+                    hlsOption.textContent = resolution;
+                    
                     qualitySelector.appendChild(hlsOption);
                 });
+            
+                // Set the default option (e.g., "360")
+                qualitySelector.value = 'master';
             }
+            
 
             // Event listener for the "Play M3U8 Video with HLS.js" button
             playButton.addEventListener('click', function () {
                 const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
-                const m3u8Url = selectedQualityOption.getAttribute('data-video-url');
-                playVideo(m3u8Url);
+                const m3u8Url = getM3u8Link();
+                if (selectedQualityOption.value === "auto") {
+                    playAutoVideo();
+                } else {
+                    const qualitySuffix = selectedQualityOption.value === "master" ? "_master" : `_${selectedQualityOption.value}`;
+                    playVideo(`${m3u8Url}${qualitySuffix}.m3u8`);
+                }
             });
 
             // Event listener for the "Copy Link" button
             copyButton.addEventListener('click', function () {
                 const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
-                const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                const videoUrl = selectedQualityOption.value === "auto" ?
+                    `${getM3u8Link()}_master.m3u8` : `${getM3u8Link()}_${selectedQualityOption.value}.m3u8`;
 
                 // Create a temporary input element to copy the text to clipboard
                 const tempInput = document.createElement('input');
@@ -153,7 +246,8 @@
             // Event listener for the "Open with VLC" button
             openVLCButton.addEventListener('click', function () {
                 const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
-                const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                const qualitySuffix = selectedQualityOption.value === "master" ? "_master" : `_${selectedQualityOption.value}`;
+                const videoUrl = `${getM3u8Link()}${qualitySuffix}.m3u8`;
                 window.open('vlc://' + videoUrl);
             });
 
@@ -170,7 +264,8 @@
             // Event listener for the "Open with 1DM" button
             open1DMButton.addEventListener('click', function () {
                 const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
-                const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                const qualitySuffix = selectedQualityOption.value === "master" ? "_master" : `_${selectedQualityOption.value}`;
+                const videoUrl = `${getM3u8Link()}${qualitySuffix}.m3u8`;
                 const intentUrl = 'intent:' + videoUrl + '#Intent;package=idm.internet.download.manager;end';
                 window.open(intentUrl);
             });
@@ -178,13 +273,27 @@
             // General function to open MX Player with a specific package name
             function openInMXPlayer(packageName) {
                 const selectedQualityOption = qualitySelector.options[qualitySelector.selectedIndex];
-                const videoUrl = selectedQualityOption.getAttribute('data-video-url');
+                const qualitySuffix = selectedQualityOption.value === "master" ? "_master" : `_${selectedQualityOption.value}`;
+                const videoUrl = `${getM3u8Link()}${qualitySuffix}.m3u8`;
 
                 // Create an intent URL for MX Player
                 const intentUrl = `intent:${videoUrl}#Intent;package=${packageName};end`;
 
                 // Open the intent URL
                 window.open(intentUrl, '_blank');
+            }
+
+            // Function to check if the user is on a PC
+            function isPC() {
+                return window.innerWidth > 768; // Adjust the threshold as needed
+            }
+
+            // Hide buttons if the user is on a PC
+            if (isPC()) {
+                document.getElementById('openVLC').style.display = 'none';
+                document.getElementById('openMXPlayerFree').style.display = 'none';
+                document.getElementById('openMXPlayerPro').style.display = 'none';
+                document.getElementById('open1DM').style.display = 'none';
             }
 
             // Initialize Plyr.io
@@ -196,10 +305,15 @@
 
             if (m3u8Link) {
                 updateQualityDropdowns(m3u8Link);
+                // Automatically play the video with the default link (auto quality)
+                playAutoVideo();
             } else {
                 // Invalid URL
                 alert('Invalid URL format. Please make sure the URL contains the "m" query parameter with a valid m3u8 link.');
             }
         });
     </script>
+    
+    
+
 </body>
